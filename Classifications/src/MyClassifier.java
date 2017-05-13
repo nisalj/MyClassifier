@@ -32,10 +32,7 @@ class Entry  {
 
 public class MyClassifier {
 
-	
-	
-	
-	
+
 	//returns the difference between 2 entries 
 	private double get_distance(double[] test, double[] train) {
 		double first;  
@@ -108,13 +105,8 @@ public class MyClassifier {
 		    //repeat for next test entry 
 
 		}
-		
-		
+
 		return correct/comparisons; 
 	}
-
-
-	
-	
 
 }
