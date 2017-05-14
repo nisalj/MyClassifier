@@ -87,8 +87,8 @@ public class MyClassifier {
 				//training fold entry
 				for (int z = 0; z < training.get(j).size(); z++) {
 					//add the different distances from testing to each training 
-				double [] train = training.get(j).get(z); 
-				diffs.add(new Entry(get_distance(test, train), (int)train[8] )); 
+					double [] train = training.get(j).get(z);
+					diffs.add(new Entry(get_distance(test, train), (int)train[8] ));
 				}
 			
 			  
