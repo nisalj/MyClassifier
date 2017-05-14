@@ -1,9 +1,17 @@
 import java.util.*;
 
+/**
+ * Takes in two textfiles - one for the training set, one for the testing set
+ * Input: Training Set(.txt), Testing Set(.txt), Algorithm-Type(String)
+ * Output: yes/no(System.out) based on the predicted class
+ * 1. Calls FoldGenerator
+ * 2. Makes training set
+ */
+
 class Entry  {
 	int m_class; 
 	double m_diff; 
-	
+
 	Entry(double diff, int class_no) {
 		m_class = class_no;
 		m_diff = diff; 
