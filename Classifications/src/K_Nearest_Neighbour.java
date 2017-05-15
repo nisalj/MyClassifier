@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Stores the accuracy
  * Stores the predicted yes/no
  * Input: ArrayList<ArrayList<double[]>>
- * Output: ArrayList<Entry>
+ * Output: String[]
  */
 public class K_Nearest_Neighbour {
 
@@ -24,8 +24,11 @@ public class K_Nearest_Neighbour {
     }
 
 //    Algorithm
-//    public ArrayList<double[]> algorithm() {
-//        // TODO: 15/05/2017 runs the algorithm
-//        return;
-//    }
+    public String[] algorithm() {
+        // TODO: 15/05/2017 runs the algorithm
+        String[] prediction = null;
+
+
+        return prediction;
+    }
 }
