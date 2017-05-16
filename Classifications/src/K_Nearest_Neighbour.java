@@ -31,9 +31,21 @@ public class K_Nearest_Neighbour {
 		for (int j = 0; j < training.size(); j++) {
 			double[] train = training.get(j);
 			diffs.add(new Entry(get_distance(test, train), (int)train[8] ));
-
 		}
-		Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
+
+
+//		Collections.sort(diffs, new Comparator<Entry>() {
+//			@Override
+//			public int compare(Entry p1, Entry p2) {
+//				return Double.compare(p1.getDiff(), p2.getDiff());
+//			}
+//		});
+		Collections.sort(diffs);
+
+//				Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
+		for (Entry itr:diffs) {
+			System.out.println(itr.getDiff());
+		}
 		return getMajority(diffs,k);
 	}
 

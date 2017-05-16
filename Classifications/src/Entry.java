@@ -1,7 +1,7 @@
 /**
  * Created by Ben on 16/05/2017.
  */
-public class Entry  {
+public class Entry implements Comparable<Entry> {
 
     int m_class;
     double m_diff;
@@ -27,4 +27,8 @@ public class Entry  {
         return this.m_class;
     }
 
+    @Override
+    public int compareTo(Entry o) {
+        return Double.compare(m_diff, o.getDiff());
+    }
 }
