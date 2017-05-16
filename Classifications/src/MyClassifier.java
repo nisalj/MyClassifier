@@ -40,7 +40,7 @@ public class MyClassifier {
 		ArrayList<double[]> testing_set = parser1.parseFile();
 
 		K_Nearest_Neighbour nn = new K_Nearest_Neighbour();
-//		Naive_Bayes nb = new Naive_Bayes();
+		NaiveBayes nb = new NaiveBayes();
 
 //		FoldGenerator folder = new FoldGenerator(training_set);
 //		ArrayList<ArrayList<double[]>> fold = folder.fgen();
@@ -51,10 +51,10 @@ public class MyClassifier {
 //			System.out.println("N");
 			// TODO: 16/05/2017 run the naive bayes algorithm
 
-//			String[] result = nb.algorithm(training_set, testing_set);
-//			for (String class_type:result) {
-//				System.out.println(class_type);
-//			}
+			String[] result = nb.algorithm(training_set, testing_set);
+			for (String class_type:result) {
+				System.out.println(class_type);
+			}
 		} else {
 			kValue = Character.getNumericValue(algorithm_type.charAt(0));
 //			System.out.println("kValue = " + kValue);
