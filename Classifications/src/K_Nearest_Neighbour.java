@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class K_Nearest_Neighbour {
 
+	//Returns list of majorities
 	public String[] algorithm(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
 
 		String[] prediction = new String[testing.size()];
