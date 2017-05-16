@@ -1,0 +1,46 @@
+CHANGELOG
+
+16/5/17 - Nisal
+
+Note 1:
+
+K-nearest completed, returns a list of strings could not make it return an array, 
+String[testing.size()]something  doesn't work. If we do String[]something = null then
+the array is not pointing to anything, and we cannot add elements. I think why the first one doesnt work 
+is because the size of the array has to be know at compile rather than run time in order to allocate
+space in stack and testing.size() is not known at run time. Best way to get an array is to 
+return an array list from k-nearest and use ".asArray" method to convert it to an array in the 
+accuracy class. But this is a waste of time and memory -> it creates a new array and puts the elements 
+in that array. This is good when we dont want to modify the orginal object (as we are no longer working 
+with pointers) but in this case we dont care.  
+
+Note 2:
+
+Do we need member variables for k class as we pass the arguments to the methods anyway?
+And the arguments changes based on which folds so the member variables are useless unless we create
+multiple objects of k_neighbour with different sets of training and examples. Maybe we should just
+initiate the class with k as it is the only constant.
+
+Note 3: Naive Bayes
+
+***Mean and Standard deviation***
+
+Mean and Standard deviation values are needed for each attribute in each class as we are using the
+probabilty distribution function. Example: 
+
+Class | Attr1	| Att2	|...|Attr8
+------|---------|-------|...|------|
+Yes	  |Mean:0.8	|Mean..	|	|Mean..|
+	  |Std:0.6	|Std..	|	|Std...|	
+No	  |Mean:0.5	|Mean..	|	|Mean..|
+	  |Std:0.3	|Std..	|	|Std...|	
+	  
+We can represent this in 4 arrays:
+
+MeanYes[8] = {Attr1,...Attr8}
+StdYes[8]  = {Attr1,...Attr8}
+MeanNo[8]  = {Attr1,...Attr8}
+StdNo[8]   = {Attr1,...Attr8}
+
+And maybe we can put these arrays in 2 lists, 1 for each class. 
+
