@@ -19,9 +19,9 @@ public class Entry implements Comparable<Entry> {
         return this.m_diff;
     }
 
-    void setClass(int num) {
-        this.m_class = num;
-    }
+//    void setClass(int num) {
+//        this.m_class = num;
+//    }
 
     int getClassNo() {
         return this.m_class;

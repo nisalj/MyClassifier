@@ -12,7 +12,7 @@ public class CrossValidation {
         ArrayList<double[]> entries = parser.parseFile();
         FoldGenerator folder = new FoldGenerator(entries);
         ArrayList<ArrayList<double[]>> fold = folder.fgen();
-        K_Nearest_Neighbour kNN = new K_Nearest_Neighbour();
+        K_Nearest_Neighbour nn = new K_Nearest_Neighbour();
 
         double[] accuracy = new double[10];
         int kValue = 5;
@@ -35,7 +35,7 @@ public class CrossValidation {
             //K_Nearest_Neighbour kNearest = new K_Nearest_Neighbour(training, testing, kValue);
             //Naive_Bayes nbtester = new Naive_Bayes(training, testing);
             //algorithm returns list 
-            String[] result = kNN.algorithm(training, testing, kValue);
+            String[] result = nn.algorithm(training, testing, kValue);
             String[] actual = new String[testing.size()];
 
             for (int i = 0; i < testing.size(); i++) {
