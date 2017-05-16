@@ -13,15 +13,15 @@ import java.util.List;
  */
 public class K_Nearest_Neighbour {
 
-    ArrayList<double[]> training;
-    ArrayList<double[]> testing;
-    int k;
-
-    public K_Nearest_Neighbour(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
-        this.training = training;
-        this.testing = testing;
-        this.k = k;
-    }
+//    ArrayList<double[]> training;
+//    ArrayList<double[]> testing;
+//    int k;
+//
+//    public K_Nearest_Neighbour(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
+//        this.training = training;
+//        this.testing = testing;
+//        this.k = k;
+//    }
 
     
     //Returns majority class
@@ -87,7 +87,7 @@ public class K_Nearest_Neighbour {
         return prediction;
     }*/
 
-    public String[] algorithm() {
+    public String[] algorithm(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
 
         String[] prediction = new String[testing.size()];
 

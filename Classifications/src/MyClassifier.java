@@ -32,10 +32,8 @@ class Entry  {
 	int getClassNo() {
 		return this.m_class; 
 	}
-	
 
-	
- }
+}
 
 
 public class MyClassifier {

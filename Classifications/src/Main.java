@@ -11,7 +11,7 @@ public class Main {
         String algorithm_type = args[2];
 
         // TODO: 15/05/2017 Read in algorithm type, need variable kval
-        int kVal = 0;
+        int kValue = 0;
 
         DataReader parser1 = new DataReader(testing_file);
         ArrayList<double[]> testing_set = parser1.parseFile();
@@ -22,11 +22,10 @@ public class Main {
         FoldGenerator folder = new FoldGenerator(training_set);
         ArrayList<ArrayList<double[]>> fold = folder.fgen();
 
+        K_Nearest_Neighbour nn = new K_Nearest_Neighbour();
         for (int i = 0; i < 10; i++) {
-            K_Nearest_Neighbour nn = new K_Nearest_Neighbour(fold.get(i), testing_set, kVal);
-            String[] result = nn.algorithm();
+            String[] result = nn.algorithm(fold.get(i), testing_set, kValue);
         }
-
 
     }
 }
