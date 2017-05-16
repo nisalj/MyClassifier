@@ -5,4 +5,7 @@
  * Stores the predicted yes/no
  */
 public class Naive_Bayes {
+	
+	
+	
 }

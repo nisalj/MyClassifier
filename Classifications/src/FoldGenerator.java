@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * 2. Used by class Algorithm Accuracy to test for the percentage accuracy of each algorithm
  * 3. Creates file pima-folds.csv to be used in report
  * Input: ArrayList<double[]>
- * Output: ArrayList<ArrayList<double[]>>
+ * Output: ArrayList<ArrayList<double[]>> 
  */
 
 public class FoldGenerator {

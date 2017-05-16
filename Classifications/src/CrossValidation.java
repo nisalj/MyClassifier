@@ -32,6 +32,7 @@ public class CrossValidation {
 
             //Calls the algorithm 10 times, each time with a difference testing and training set
             K_Nearest_Neighbour kNearest = new K_Nearest_Neighbour(training, testing, kValue);
+            //algorithm returns list 
             String[] result = kNearest.algorithm();
             String[] actual = new String[testing.size()];
 
