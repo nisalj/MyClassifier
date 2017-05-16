@@ -24,6 +24,7 @@ public class Main {
 
         for (int i = 0; i < 10; i++) {
             K_Nearest_Neighbour nn = new K_Nearest_Neighbour(fold.get(i), testing_set, kVal);
+            String[] result = nn.algorithm();
         }
 
 

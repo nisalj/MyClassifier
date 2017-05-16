@@ -41,6 +41,5 @@ MeanYes[8] = {Attr1,...Attr8}
 StdYes[8]  = {Attr1,...Attr8}
 MeanNo[8]  = {Attr1,...Attr8}
 StdNo[8]   = {Attr1,...Attr8}
-
 And maybe we can put these arrays in 2 lists, 1 for each class. 
 

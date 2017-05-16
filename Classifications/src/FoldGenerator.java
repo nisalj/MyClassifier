@@ -94,7 +94,6 @@ public class FoldGenerator {
                     } else {
                         printer.print(entry[i] + ",");
                     }
-
                 } printer.println();
             } printer.println(); it++;
         } printer.close();

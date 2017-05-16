@@ -36,9 +36,9 @@ public class K_Nearest_Neighbour {
 		
 		//if tie choose yes
 		if (yes >= no)
-			return "Yes";
+			return "yes";
 		else 
-			return "No"; 
+			return "no";
 		
 	}
 	
@@ -48,20 +48,19 @@ public class K_Nearest_Neighbour {
 		double first;  
 		double second; 
 		double diff = 0; 
-		for (int i = 0; i <test.length; i++) {
+		for (int i = 0; i <test.length-1; i++) { //changed from test.length to test.length-1
 			first = test[i];
 			second = train[i];
 			diff +=Math.pow(first-second, 2);
 		}
-		
-		
+
 		return Math.sqrt(diff);
 		
 	}
     
     
     //The proper k_neighbour algorithm. Gets the majority class for a single example
-    private String k_neighbour(double[] test, List<double[]> training, int k ) {
+    private String k_neighbour(double[] test, ArrayList<double[]> training, int k ) {
     	List<Entry> diffs = new ArrayList<Entry>(); 
 
     	for (int j = 0; j < training.size(); j++) {
@@ -72,13 +71,9 @@ public class K_Nearest_Neighbour {
 	    Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
 	    return getMajority(diffs,k);  
     }
-    
-    
-    
-    
-    
+
   //Returns list of majority class for all examples 
-    public List<String> algorithm(List<double[]> testing, List<double[]> training, int k) {
+/*    public List<String> algorithm(List<double[]> testing, List<double[]> training, int k) {
   	
     	List<String> prediction = new ArrayList<String>(); 
     	
@@ -90,6 +85,16 @@ public class K_Nearest_Neighbour {
   
   
         return prediction;
+    }*/
+
+    public String[] algorithm() {
+
+        String[] prediction = new String[testing.size()];
+
+        for (int i = 0; i < testing.size(); i++) {
+            prediction[i] = k_neighbour(testing.get(i), training, k);
+        }
+
+        return prediction;
     }
-    
-    }
+}

@@ -22,7 +22,7 @@ public class CrossValidation {
             ArrayList<double[]> testing = new ArrayList<>(100);
             testing.addAll(fold.get(k));
 
-            //Training set is everything excep the testing set
+            //Training set is everything except the testing set
             ArrayList<double[]> training = new ArrayList<>(1000);
             for (int i = 0; i < 10; i++) {
                 if (i != k) {
@@ -32,6 +32,7 @@ public class CrossValidation {
 
             //Calls the algorithm 10 times, each time with a difference testing and training set
             K_Nearest_Neighbour kNearest = new K_Nearest_Neighbour(training, testing, kValue);
+            //Naive_Bayes nbtester = new Naive_Bayes(training, testing);
             //algorithm returns list 
             String[] result = kNearest.algorithm();
             String[] actual = new String[testing.size()];
@@ -61,6 +62,7 @@ public class CrossValidation {
         }
 
         double totalAccuracy = sum/10;
+
         System.out.println("totalAccuracy = " + totalAccuracy);
 
 
