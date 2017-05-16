@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * Takes in a training set and a testing set
@@ -27,7 +26,7 @@ public class K_Nearest_Neighbour {
 
 	//The proper k_neighbour algorithm. Gets the majority class for a single example
 	private String k_neighbour(double[] test, ArrayList<double[]> training, int k ) {
-		List<Entry> diffs = new ArrayList<Entry>();
+		ArrayList<Entry> diffs = new ArrayList<Entry>();
 
 		for (int j = 0; j < training.size(); j++) {
 			double[] train = training.get(j);
@@ -39,7 +38,7 @@ public class K_Nearest_Neighbour {
 	}
 
     //Returns majority class
-    private String getMajority(List<Entry> diffs, int k) {
+    private String getMajority(ArrayList<Entry> diffs, int k) {
 		int yes = 0;
 		int no = 0; 
 		for (int i = 0; i < k; i++) {

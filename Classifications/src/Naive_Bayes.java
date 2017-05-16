@@ -162,7 +162,4 @@ public class Naive_Bayes {
     }
     
 
-    //code to split into two array list by class
-  
-    
 }

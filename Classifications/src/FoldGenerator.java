@@ -20,9 +20,7 @@ public class FoldGenerator {
     }
 
     public ArrayList<ArrayList<double[]>> fgen() {
-//        String filename = "pima.txt";
-//        DataReader parser = new DataReader(filename);
-//        ArrayList<double[]> data = parser.parseFile();
+
         //create two classes containing all the data points with yes and no
         ArrayList<double[]> classY = new ArrayList<double[]>();
         ArrayList<double[]> classN = new ArrayList<double[]>();
@@ -97,6 +95,28 @@ public class FoldGenerator {
                 } printer.println();
             } printer.println(); it++;
         } printer.close();
+
+//        String temp = "pima-test.csv";
+//        PrintWriter print = null;
+//        try {
+//            print = new PrintWriter(temp);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        assert print != null;
+//        for (double[] entry:all_folds.get(0)) {
+//            for (int i = 0; i < entry.length; i++) {
+//                if (i == entry.length-1) {
+//                    if (entry[i] == 1) { //if yes
+//                        print.print("yes");
+//                    } else { //if no
+//                        print.print("no");
+//                    }
+//                } else {
+//                    print.print(entry[i] + ",");
+//                }
+//            } print.println();
+//        } print.close();
 
     return all_folds;
 //        testing: stratification of folds

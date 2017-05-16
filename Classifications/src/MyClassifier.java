@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -8,111 +10,55 @@ import java.util.*;
  * 2. Makes training set
  */
 
-class Entry  {
-	int m_class; 
-	double m_diff; 
-
-	Entry(double diff, int class_no) {
-		m_class = class_no;
-		m_diff = diff; 
-	}
-	
-	void setDiff(double diff) {
-		this.m_diff = diff; 
-	}
-	
-	double getDiff() {
-		return this.m_diff; 
-	}
-	
-	void setClass(int num) {
-		this.m_class = num; 
-	}
-	
-	int getClassNo() {
-		return this.m_class; 
-	}
-
-}
-
-
 public class MyClassifier {
 
+	public static void main(String[] args) {
+		String training_file = args[0];
+		String testing_file = args[1];
+		String algorithm_type = args[2];
 
-	//returns the difference between 2 entries 
-	private double get_distance(double[] test, double[] train) {
-		double first;  
-		double second; 
-		double diff = 0; 
-		for (int i = 0; i <test.length; i++) {
-			first = test[i];
-			second = train[i];
-			diff +=Math.pow(first-second, 2);
-		}
-		
-		
-		return Math.sqrt(diff);
-		
-	}
-	
-	private int getMajority(List<Entry> diffs, int k) {
-		int yes = 0;
-		int no = 0; 
-		for (int i = 0; i < k; i++) {
-			if (diffs.get(i).getClassNo() == 1)
-				yes++;
-			else no++; 
-		}
-		
-		//if tie choose yes
-		if (yes >= no)
-			return yes;
-		else 
-			return no; 
-		
-	}
-	
-	
+		// read in from textfile
+		DataReader parser2 = new DataReader(training_file);
+		ArrayList<double[]> training_set = parser2.parseFile();
 
+		DataReader parser1 = new DataReader(testing_file);
+		ArrayList<double[]> testing_set = parser1.parseFile();
 
-	/* testing 1 fold - list of arrays
-	training 9 folds - list of list of arrays
-	*/
-	
-	public double k_nearest(List<double[]> testing, List<List<double[]>> training, int k) {
-		int correct = 0; 
-		int comparisons = 0; 
-		List<Entry> diffs = new ArrayList<Entry>(); 
-		
-		
-		for (int i = 0; i < testing.size(); i++) {
-			// testing fold entry 
-			double[] test = testing.get(i); 
-			//training fold no
-			for (int j = 0; i < training.size(); i++) {
-				//training fold entry
-				for (int z = 0; z < training.get(j).size(); z++) {
-					//add the different distances from testing to each training 
-					double [] train = training.get(j).get(z);
-					diffs.add(new Entry(get_distance(test, train), (int)train[8] ));
-				}
-			
-			  
+		K_Nearest_Neighbour nn = new K_Nearest_Neighbour();
+//		Naive_Bayes nb = new Naive_Bayes();
+
+//		FoldGenerator folder = new FoldGenerator(training_set);
+//		ArrayList<ArrayList<double[]>> fold = folder.fgen();
+
+		// run algorithm based on input
+		int kValue = 0;
+		if (algorithm_type.charAt(0) == 'N') {
+			System.out.println("N");
+			// TODO: 16/05/2017 run the naive bayes algorithm
+//			String[] result = nb.algorithm();
+		} else {
+			kValue = Character.getNumericValue(algorithm_type.charAt(0));
+//			System.out.println("kValue = " + kValue);
+			String[] result = nn.algorithm(training_set, testing_set, kValue);
+
+			for (String class_type:result) {
+				System.out.println(class_type);
 			}
-			//sort difference 
-		    Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
-		    //select closest k differences and their majority class
-		    if ((int)test[8] == getMajority(diffs, k)) {
-		    	correct++; 
-		    }
-		    comparisons++; 
-		    diffs.removeAll(diffs); 
-		    
-		    //repeat for next test entry 
+
+//			String log = "log.csv";
+//			PrintWriter logger = null;
+//			try {
+//				logger = new PrintWriter(log);
+//				for (String class_type:result) {
+//					logger.print(class_type);
+//					logger.println();
+//				} logger.close();
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//				System.out.println("File not found");
+//			}
+
 
 		}
-
-		return correct/comparisons; 
 	}
-
 }
