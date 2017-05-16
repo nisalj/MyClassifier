@@ -8,7 +8,7 @@ public class CrossValidation {
 
     public static void main(String[] args) {
 
-        DataReader parser = new DataReader("pima.txt");
+        DataReader parser = new DataReader("pima.csv");
         ArrayList<double[]> entries = parser.parseFile();
         FoldGenerator folder = new FoldGenerator(entries);
         ArrayList<ArrayList<double[]>> fold = folder.fgen();
