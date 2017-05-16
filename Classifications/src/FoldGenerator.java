@@ -73,7 +73,7 @@ public class FoldGenerator {
             it++;
             Yptr++;
         } it = 1;
-        String out = "pima-folds.txt";
+        String out = "pima-folds.csv";
         PrintWriter printer = null;
         try {
             printer = new PrintWriter(out);

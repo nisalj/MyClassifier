@@ -18,4 +18,20 @@ public class Naive_Bayes {
         String[] prediction = new String[testing.size()];
         return prediction;
     }
+
+    //code to split into two array list by class
+    ArrayList<double[]> classY = new ArrayList<double[]>();
+    ArrayList<double[]> classN = new ArrayList<double[]>();
+    int yes = 0;
+    int no = 0;
+
+        for(double[] entry: data) {
+        if(entry[entry.length-1] == 1) {
+            yes++;
+            classY.add(entry); //add it to the class with yes's
+        } else {
+            no++;
+            classN.add(entry); //add it to the class with no's
+        }
+    }
 }

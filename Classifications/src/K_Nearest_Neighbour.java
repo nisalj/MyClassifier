@@ -13,17 +13,30 @@ import java.util.List;
  */
 public class K_Nearest_Neighbour {
 
-//    ArrayList<double[]> training;
-//    ArrayList<double[]> testing;
-//    int k;
-//
-//    public K_Nearest_Neighbour(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
-//        this.training = training;
-//        this.testing = testing;
-//        this.k = k;
-//    }
+	public String[] algorithm(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
 
-    
+		String[] prediction = new String[testing.size()];
+
+		for (int i = 0; i < testing.size(); i++) {
+			prediction[i] = k_neighbour(testing.get(i), training, k);
+		}
+
+		return prediction;
+	}
+
+	//The proper k_neighbour algorithm. Gets the majority class for a single example
+	private String k_neighbour(double[] test, ArrayList<double[]> training, int k ) {
+		List<Entry> diffs = new ArrayList<Entry>();
+
+		for (int j = 0; j < training.size(); j++) {
+			double[] train = training.get(j);
+			diffs.add(new Entry(get_distance(test, train), (int)train[8] ));
+
+		}
+		Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
+		return getMajority(diffs,k);
+	}
+
     //Returns majority class
     private String getMajority(List<Entry> diffs, int k) {
 		int yes = 0;
@@ -39,10 +52,8 @@ public class K_Nearest_Neighbour {
 			return "yes";
 		else 
 			return "no";
-		
 	}
-	
-    
+
     //Returns the distance from an example to training entry 
     private double get_distance(double[] test, double[] train) {
 		double first;  
@@ -53,48 +64,7 @@ public class K_Nearest_Neighbour {
 			second = train[i];
 			diff +=Math.pow(first-second, 2);
 		}
-
 		return Math.sqrt(diff);
-		
 	}
-    
-    
-    //The proper k_neighbour algorithm. Gets the majority class for a single example
-    private String k_neighbour(double[] test, ArrayList<double[]> training, int k ) {
-    	List<Entry> diffs = new ArrayList<Entry>(); 
 
-    	for (int j = 0; j < training.size(); j++) {
-			double[] train = training.get(j); 
-			diffs.add(new Entry(get_distance(test, train), (int)train[8] ));
-				
-		}
-	    Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
-	    return getMajority(diffs,k);  
-    }
-
-  //Returns list of majority class for all examples 
-/*    public List<String> algorithm(List<double[]> testing, List<double[]> training, int k) {
-  	
-    	List<String> prediction = new ArrayList<String>(); 
-    	
-    	for (int i = 0; i < testing.size(); i++) {
-    		double[] test = testing.get(i); 
-    		prediction.add(k_neighbour(test, training,k));
-    	
-    	}
-  
-  
-        return prediction;
-    }*/
-
-    public String[] algorithm(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
-
-        String[] prediction = new String[testing.size()];
-
-        for (int i = 0; i < testing.size(); i++) {
-            prediction[i] = k_neighbour(testing.get(i), training, k);
-        }
-
-        return prediction;
-    }
 }
