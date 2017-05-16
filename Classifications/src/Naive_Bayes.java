@@ -52,7 +52,7 @@ public class Naive_Bayes {
 	
 	private static void setLists(ArrayList<double[]> training) {
 		clearAll();
-		int attributes = training.get(0).length; 
+		int attributes = training.get(0).length-1; 
 		  
 		int yes = 0;
 		int no = 0;
@@ -132,7 +132,7 @@ public class Naive_Bayes {
 	private String bayes(double[] testing, ArrayList<double[]> training) {
 		double yesVal = 0;
 		double noVal = 0; 
-		for (int i = 0; i <testing.length; i++) {
+		for (int i = 0; i <testing.length-1; i++) {
 			yesVal *= prob_density(testing[i],i,1); 	
 			noVal  *= prob_density(testing[i],i,0);
 		}
