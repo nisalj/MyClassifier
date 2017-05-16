@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Stores the predicted yes/no
  */
 public class Naive_Bayes {
-    private static Naive_Bayes instance = null ; 
+    private static Naive_Bayes instance = new Naive_Bayes() ;
 	
 	 ArrayList<double[]> classY = null;
 	 ArrayList<double[]> classN = null;
@@ -21,17 +21,16 @@ public class Naive_Bayes {
 	 
 	 public  Naive_Bayes() {
 		 if (instance == null) {
-			 instance = new Naive_Bayes();
-			 instance.classY = new ArrayList<double[]>(); 
-			 instance.classN = new ArrayList<double[]>(); 
-			 instance.classYMean = new ArrayList<Double>(); 
-			 instance.classNMean = new ArrayList<Double>(); 
-			 instance.classYstd = new ArrayList<Double>(); 
-			 instance.classNstd = new ArrayList<Double>(); 
-			 instance.probNo = 0;
-			 instance.probYes = 0; 
-		 } else 
-			 return; 
+			 this.classY = new ArrayList<double[]>();
+			 this.classN = new ArrayList<double[]>();
+			 this.classYMean = new ArrayList<Double>();
+			 this.classNMean = new ArrayList<Double>();
+			 this.classYstd = new ArrayList<Double>();
+			 this.classNstd = new ArrayList<Double>();
+			 this.probNo = 0;
+			 this.probYes = 0;
+		 } else
+			 return;
 		 
 	 }
 	 
@@ -52,7 +51,7 @@ public class Naive_Bayes {
 	
 	private static void setLists(ArrayList<double[]> training) {
 		clearAll();
-		int attributes = training.get(0).length; 
+		int attributes = training.get(0).length-1;
 		  
 		int yes = 0;
 		int no = 0;
@@ -132,7 +131,7 @@ public class Naive_Bayes {
 	private String bayes(double[] testing, ArrayList<double[]> training) {
 		double yesVal = 0;
 		double noVal = 0; 
-		for (int i = 0; i <testing.length; i++) {
+		for (int i = 0; i <testing.length-1; i++) {
 			yesVal *= prob_density(testing[i],i,1); 	
 			noVal  *= prob_density(testing[i],i,0);
 		}

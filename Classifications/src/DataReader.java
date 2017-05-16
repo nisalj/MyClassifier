@@ -35,17 +35,24 @@ public class DataReader {
             String[] split = file.nextLine().split(",");
             double[] singleRow = new double[split.length];
 
-            //cast from string to double
-            for (int i = 0; i < split.length - 1; i++) {
-                singleRow[i] = Double.parseDouble(split[i]);
-            }
-
             //convert class type to double
             //1 for yes, 0 for no
-            if (split[split.length-1].equals("yes")) {
-                singleRow[split.length-1] = 1;
+            if (split.length == 9) {
+                for (int i = 0; i < split.length - 1; i++) {
+                    singleRow[i] = Double.parseDouble(split[i]);
+                }
+
+                if (split[split.length-1].equals("yes")) {
+                    singleRow[split.length-1] = 1;
+                } else if (split[split.length-1].equals("no")) {
+                    singleRow[split.length-1] = 0;
+                } else {
+                    System.out.println("+++++++++WRONG SPLITTING+++++++++");
+                }
             } else {
-                singleRow[split.length-1] = 0;
+                for (int i = 0; i < split.length; i++) {
+                    singleRow[i] = Double.parseDouble(split[i]);
+                }
             }
 
             //add to our list of doubles

@@ -12,25 +12,30 @@ import java.util.Comparator;
  */
 public class K_Nearest_Neighbour {
 
+	static int counter = 0;
 	//Returns list of majorities
 	public String[] algorithm(ArrayList<double[]> training, ArrayList<double[]> testing, int k) {
 
 		String[] prediction = new String[testing.size()];
 
 		for (int i = 0; i < testing.size(); i++) {
-			prediction[i] = k_neighbour(testing.get(i), training, k);
+			prediction[i] = k_neighbour(training, testing.get(i), k);
 		}
 
 		return prediction;
 	}
 
 	//The proper k_neighbour algorithm. Gets the majority class for a single example
-	private String k_neighbour(double[] test, ArrayList<double[]> training, int k ) {
+	private String k_neighbour(ArrayList<double[]> training, double[] test, int k ) {
 		ArrayList<Entry> diffs = new ArrayList<Entry>();
 
 		for (int j = 0; j < training.size(); j++) {
 			double[] train = training.get(j);
-			diffs.add(new Entry(get_distance(test, train), (int)train[8] ));
+			double dist = get_distance(test, train);
+//			System.out.println((int)train[train.length-1]);
+			int class_type = (int)train[train.length-1];
+			Entry temp = new Entry(dist, class_type);
+			diffs.add(temp);
 		}
 
 
@@ -43,20 +48,33 @@ public class K_Nearest_Neighbour {
 		Collections.sort(diffs);
 
 //				Collections.sort(diffs, Comparator.comparing(Entry::getDiff));
-		for (Entry itr:diffs) {
-			System.out.println(itr.getDiff());
-		}
+//		System.out.println("counter " + counter);
+//		counter++;
+//		for (Entry itr:diffs) {
+//			System.out.println(itr.getDiff());
+//		}
+
 		return getMajority(diffs,k);
 	}
 
     //Returns majority class
     private String getMajority(ArrayList<Entry> diffs, int k) {
+//		System.out.println("counter " + counter);
+//		counter++;
+//		for (Entry itr:diffs) {
+//			System.out.println(itr.getDiff());
+//		}
+
 		int yes = 0;
-		int no = 0; 
+		int no = 0;
 		for (int i = 0; i < k; i++) {
-			if (diffs.get(i).getClassNo() == 1)
+			if (diffs.get(i).getClassNo() == 1) {
 				yes++;
-			else no++; 
+			} else if (diffs.get(i).getClassNo() == 0) {
+				no++;
+			} else {
+				System.out.println("+++++++++++++++++++++++++++++++++++ERROR++++++++++++++++++++++++++++++++++++");
+			}
 		}
 		
 		//if tie choose yes
@@ -70,11 +88,12 @@ public class K_Nearest_Neighbour {
     private double get_distance(double[] test, double[] train) {
 		double first;  
 		double second; 
-		double diff = 0; 
-		for (int i = 0; i <test.length-1; i++) { //changed from test.length to test.length-1
+		double diff = 0;
+
+		for (int i = 0; i < 8; i++) { //changed from test.length to test.length-1
 			first = test[i];
 			second = train[i];
-			diff +=Math.pow(first-second, 2);
+			diff += Math.pow(first-second, 2);
 		}
 		return Math.sqrt(diff);
 	}

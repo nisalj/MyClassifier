@@ -21,6 +21,21 @@ public class MyClassifier {
 		DataReader parser2 = new DataReader(training_file);
 		ArrayList<double[]> training_set = parser2.parseFile();
 
+//		String log = "log.csv";
+//		PrintWriter logger = null;
+//		try {
+//			logger = new PrintWriter(log);
+//			for (double[] da:training_set) {
+//				for (double dd:da) {
+//					logger.print(dd + ",");
+//				}
+//				logger.println();
+//			} logger.close();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//			System.out.println("File not found");
+//		}
+
 		DataReader parser1 = new DataReader(testing_file);
 		ArrayList<double[]> testing_set = parser1.parseFile();
 
@@ -33,9 +48,13 @@ public class MyClassifier {
 		// run algorithm based on input
 		int kValue = 0;
 		if (algorithm_type.charAt(0) == 'N') {
-			System.out.println("N");
+//			System.out.println("N");
 			// TODO: 16/05/2017 run the naive bayes algorithm
-//			String[] result = nb.algorithm();
+
+//			String[] result = nb.algorithm(training_set, testing_set);
+//			for (String class_type:result) {
+//				System.out.println(class_type);
+//			}
 		} else {
 			kValue = Character.getNumericValue(algorithm_type.charAt(0));
 //			System.out.println("kValue = " + kValue);
